@@ -1,11 +1,11 @@
 pipeline {
-    agent { 
+    agent {
         docker {
             image 'python:3.9.19-alpine3.20'
-            }
-      }
+        }
+    }
     triggers {
-        pollSCM '* * * * *'
+        cron('* * * * *') // Run every minute
     }
     stages {
         stage('Build') {
