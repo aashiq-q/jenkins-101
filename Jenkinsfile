@@ -1,7 +1,6 @@
 pipeline {
-    agent any
-    triggers {
-        cron('* * * * *') // Run every minute
+    agent{
+        docker { image 'python:3.9-alpine3.20' }
     }
     stages {
         stage('Build') {
