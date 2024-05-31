@@ -7,7 +7,8 @@ pipeline {
             steps {
                 echo "Building.."
                 sh '''
-                echo "doing building stuff.."
+                cd myapp
+                pip install -r requirements.txt
                 '''
             }
         }
@@ -15,9 +16,9 @@ pipeline {
             steps {
                 echo "Testing.."
                 sh '''
-                python3 helloworld.py
-                apt-get update
-                apt-get install python3 python3-pip
+                cd myapp
+                python3 hello.py
+                python3 hello.py --name=Brad
                 '''
             }
         }
