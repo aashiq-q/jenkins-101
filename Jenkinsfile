@@ -1,5 +1,5 @@
 pipeline {
-    agent{
+    agent {
         docker { image 'python:3.9-alpine3.20' }
     }
     stages {
@@ -8,7 +8,9 @@ pipeline {
                 echo "Building.."
                 sh '''
                 cd myapp
-                pip install --user -r requirements.txt
+                python3 -m venv venv
+                source venv/bin/activate
+                pip install -r requirements.txt
                 '''
             }
         }
@@ -17,6 +19,7 @@ pipeline {
                 echo "Testing.."
                 sh '''
                 cd myapp
+                source venv/bin/activate
                 python3 hello.py
                 python3 hello.py --name=Brad
                 '''
